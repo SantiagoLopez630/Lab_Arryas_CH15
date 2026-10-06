@@ -19,32 +19,35 @@
 // Pista: valida ANTES de hacer push.
 // ============================================================
 
+
 const menu = [
   { nombre: "Bandeja paisa", precio: 32000, categoria: "fuerte", disponible: true },
   { nombre: "Ajiaco", precio: 28000, categoria: "fuerte", disponible: false },
   { nombre: "Jugo de lulo", precio: 7000, categoria: "bebida", disponible: true },
-  { nombre: "Postre de natas", precio: 11000, categoria: "postre", disponible: true }
+  { nombre: "Postre de natas", precio: 11000, categoria: "postre", disponible: true },
+  { nombre: "Limonada de coco", precio: 9000, categoria: "bebida", disponible: true }
 ];
 
+
 function agregarAlPedido(pedido, carta, numero) {
-  if (!carta[numero]) {
+
+  if (carta[numero] !== undefined) {
+    const plato = carta[numero];
+    pedido.push(plato);
+    return "Agregado: " + plato.nombre;
+  } else {
     return "Ese número no está en la carta";
   }
-
-  // 1. Obtenemos el nombre (ya sea si carta es un array de objetos o de strings)
-  const plato = carta[numero].nombre || carta[numero];
-
-  // 2. Agregamos el STRING del nombre al pedido
-  pedido.push(plato);
-
-  // 3. Retornamos el mensaje
-  return `Agregado: ${plato}`;
 }
 
-// Pruebas en consola
-console.log(agregarAlPedido([], menu, 2)); // "Agregado: Jugo de lulo"
-console.log(agregarAlPedido([], menu, 0)); // "Agregado: Bandeja paisa"
-console.log(agregarAlPedido([], menu, 9)); // "Ese número no está en la carta"
 
+const miPedido = [];
+
+
+console.log(agregarAlPedido(miPedido, menu, 2)); // Salida: "Agregado: Jugo de lulo"
+
+console.log(agregarAlPedido(miPedido, menu, 9)); // Salida: "Ese número no está en la carta"
+
+console.log("Pedido actual:", miPedido);
 // No borres esta línea: es la puerta por donde el test usa tu función
 module.exports = { agregarAlPedido };

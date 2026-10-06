@@ -20,14 +20,38 @@
 // Pista: no repitas ciclos de filtro ni de suma: llama a tus funciones.
 // ============================================================
 
+const menu = [
+  { nombre: "Bandeja paisa", precio: 32000, categoria: "fuerte", disponible: true },
+  { nombre: "Ajiaco", precio: 28000, categoria: "fuerte", disponible: false },
+  { nombre: "Limonada de coco", precio: 9000, categoria: "bebida", disponible: true },
+  { nombre: "Jugo de lulo", precio: 7000, categoria: "bebida", disponible: true },
+  { nombre: "Postre de natas", precio: 11000, categoria: "postre", disponible: true },
+];
+
 // Estas líneas traen tus funciones de los ejercicios 03, 05 y 07
 const { soloDisponibles } = require("./03-solo-disponibles");
 const { agregarAlPedido } = require("./05-agregar-al-pedido");
 const { calcularCuenta } = require("./07-calcular-cuenta");
 
 function cerrarMesa(menu, numeros) {
-  // Tu código aquí
+  const cartaDelDia = soloDisponibles(menu);
+  const pedido = [];
+
+  for (let i = 0; i < numeros.length; i++) {
+    agregarAlPedido(pedido, cartaDelDia, numeros[i]);
+  }
+
+  const cantidadPlatos = pedido.length;
+  const total = calcularCuenta(pedido);
+
+  return { cantidadPlatos, total };
+
 }
+
+console.log(cerrarMesa(menu, [0, 1])); // { cantidadPlatos: 2, total: 48790 }
+console.log(cerrarMesa(menu, [0, 9])); // { cantidadPlatos: 1, total: 38080 }
+console.log(cerrarMesa(menu, [])); // { cantidadPlatos: 0, total: 0 }
+
 
 // No borres esta línea: es la puerta por donde el test usa tu función
 module.exports = { cerrarMesa };

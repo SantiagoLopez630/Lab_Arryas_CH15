@@ -30,11 +30,15 @@ function cancelarUltimo(pedido) {
     return "El pedido está vacío";
   }
   const platoCancelado = pedido.pop();
-  return `Se canceló: ${platoCancelado}`;
-
+  const nombre = platoCancelado.nombre || platoCancelado;
+  
+  return `Se canceló: ${nombre}`;
 }
 
-console.log(cancelarUltimo([ "Bandeja", "Limonada" ])); // "Se canceló: Limonada de coco"
+
+const miPedido = [menu[0], menu[2]]; // Bandeja paisa y Limonada de coco
+console.log(cancelarUltimo(miPedido)); // "Se canceló: Limonada de coco"
+
 console.log(cancelarUltimo([])); // "El pedido está vacío"
 
 // No borres esta línea: es la puerta por donde el test usa tu función
