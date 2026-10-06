@@ -19,9 +19,28 @@
 // con otra condición.
 // ============================================================
 
+const menu = [
+  { nombre: "Bandeja paisa", precio: 32000, categoria: "fuerte", disponible: true },
+  { nombre: "Ajiaco", precio: 28000, categoria: "fuerte", disponible: false },
+  { nombre: "Limonada de coco", precio: 9000, categoria: "bebida", disponible: true },
+  { nombre: "Jugo de lulo", precio: 7000, categoria: "bebida", disponible: true },
+  { nombre: "Postre de natas", precio: 11000, categoria: "postre", disponible: true },
+];
+
 function soloDisponibles(menu) {
-  // Tu código aquí
+  let disponibles = [];
+  for (let i = 0; i < menu.length; i++) {
+    if (menu[i].disponible === true) {
+      disponibles.push(menu[i]);
+    }
+  }
+  return disponibles;
+
 }
+
+console.log(soloDisponibles(menu).length); // 4
+console.log(soloDisponibles(menu)[1]); // { nombre: "Limonada de coco", precio: 9000, categoria: "bebida", disponible: true }
+console.log(soloDisponibles([])); // []
 
 // No borres esta línea: es la puerta por donde el test usa tu función
 module.exports = { soloDisponibles };

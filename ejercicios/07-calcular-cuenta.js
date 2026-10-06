@@ -17,9 +17,28 @@
 // Pista: acumulador que empieza en 0, como totalHoras de la clase.
 // ============================================================
 
+const menu = [
+  { nombre: "Bandeja paisa", precio: 32000, categoria: "fuerte", disponible: true },
+  { nombre: "Ajiaco", precio: 28000, categoria: "fuerte", disponible: false },
+  { nombre: "Limonada de coco", precio: 9000, categoria: "bebida", disponible: true },
+  { nombre: "Jugo de lulo", precio: 7000, categoria: "bebida", disponible: true },
+  { nombre: "Postre de natas", precio: 11000, categoria: "postre", disponible: true },
+];
+
 function calcularCuenta(pedido) {
-  // Tu código aquí
+  let subtotal = 0;
+  for (let i = 0; i < pedido.length; i++) {
+    subtotal += pedido[i].precio;
+  }
+  const iva = subtotal * 0.19;
+  return Math.round(subtotal + iva);
 }
+
+console.log(calcularCuenta([{ precio: 32000 }, { precio: 9000 }])); // 48790
+console.log(calcularCuenta([{ precio: 1250 }]));
+
+
+
 
 // No borres esta línea: es la puerta por donde el test usa tu función
 module.exports = { calcularCuenta };
